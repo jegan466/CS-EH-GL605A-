@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Encryption & Decryption Tool</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🔐 ANTIGRAVITY</div>
+        <nav>
+            <span>Build</span>
+            <span>Learn</span>
+            <span>Create</span>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="badge">SECURITY PROJECT</div>
+
+            <h1>Data Encryption & Decryption Tool</h1>
+
+            <p>
+                Secure your messages using modern cryptographic algorithms.
+            </p>
+        </section>
+
+        <section class="tool-container">
+
+            <!-- LEFT SIDE -->
+            <div class="card">
+
+                <h2>🔒 Encryption Tool</h2>
+
+                <label for="algorithm">Select Algorithm</label>
+
+                <select id="algorithm">
+                    <option value="AES">AES-GCM</option>
+                    <option value="RSA">RSA-OAEP</option>
+                </select>
+
+                <label for="inputText">Enter Message</label>
+
+                <textarea
+                    id="inputText"
+                    placeholder="Enter your message here..."
+                ></textarea>
+
+                <div class="button-group">
+
+                    <button class="encrypt-btn" onclick="encryptData()">
+                        🔒 Encrypt
+                    </button>
+
+                    <button class="decrypt-btn" onclick="decryptData()">
+                        🔓 Decrypt
+                    </button>
+
+                </div>
+
+                <button class="clear-btn" onclick="clearData()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="card">
+
+                <h2>📄 Output</h2>
+
+                <textarea
+                    id="outputText"
+                    readonly
+                    placeholder="Encrypted or decrypted result will appear here..."
+                ></textarea>
+
+                <button class="copy-btn" onclick="copyOutput()">
+                    📋 Copy Output
+                </button>
+
+                <div id="status" class="status">
+                    Ready
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALGORITHM INFORMATION -->
+
+        <section class="info-container">
+
+            <div class="info-card">
+
+                <div class="icon">🔐</div>
+
+                <h3>AES-GCM</h3>
+
+                <p>
+                    AES is a symmetric encryption algorithm.
+                    The same secret key is used for encryption
+                    and decryption.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="icon">🔑</div>
+
+                <h3>RSA-OAEP</h3>
+
+                <p>
+                    RSA is an asymmetric encryption algorithm
+                    that uses a public key for encryption and
+                    a private key for decryption.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="icon">🛡️</div>
+
+                <h3>Security</h3>
+
+                <p>
+                    Encryption helps protect data confidentiality
+                    and prevents unauthorized access.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="features">
+
+            <h2>Project Features</h2>
+
+            <div class="feature-grid">
+
+                <div>✓ AES Encryption</div>
+                <div>✓ RSA Encryption</div>
+                <div>✓ Encryption & Decryption</div>
+                <div>✓ Real-time Output</div>
+                <div>✓ Copy Encrypted Data</div>
+                <div>✓ Client-side Processing</div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            SECURE • ENCRYPT • DECRYPT
+        </p>
+
+        <small>
+            Data Encryption and Decryption Tool
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
