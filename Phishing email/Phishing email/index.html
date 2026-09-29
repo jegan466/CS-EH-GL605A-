@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Phishing Awareness Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🛡️ CYBER AWARENESS</div>
+
+    <nav>
+        <span>Learn</span>
+        <span>Practice</span>
+        <span>Safety</span>
+    </nav>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            SECURITY TRAINING
+        </div>
+
+        <h1>
+            Phishing Email Simulation
+        </h1>
+
+        <p>
+            Learn how to identify suspicious emails and protect yourself
+            from phishing attacks.
+        </p>
+
+    </section>
+
+
+    <!-- SCORE -->
+
+    <section class="score-card">
+
+        <div>
+            <span class="score-label">
+                Awareness Score
+            </span>
+
+            <strong id="score">
+                0
+            </strong>
+
+            <span>
+                / 100
+            </span>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress"></div>
+        </div>
+
+    </section>
+
+
+    <!-- EMAIL SIMULATION -->
+
+    <section class="simulation">
+
+        <div class="email-card">
+
+            <div class="email-header">
+
+                <div class="email-icon">
+                    ✉️
+                </div>
+
+                <div>
+                    <h2>
+                        Security Alert
+                    </h2>
+
+                    <p>
+                        Training Simulation Email
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="email-details">
+
+                <p>
+                    <strong>From:</strong>
+                    security-alert@example-training.com
+                </p>
+
+                <p>
+                    <strong>Subject:</strong>
+                    Urgent: Verify Your Account
+                </p>
+
+            </div>
+
+
+            <div class="email-body">
+
+                <p>
+                    Dear User,
+                </p>
+
+                <p>
+                    We noticed unusual activity on your account.
+                    Please review your account security immediately.
+                </p>
+
+                <div class="warning-box">
+                    ⚠️ This is a simulated training email.
+                    Never enter real passwords or personal information
+                    during this exercise.
+                </div>
+
+                <p>
+                    The message contains several clues that you should
+                    examine before trusting it.
+                </p>
+
+            </div>
+
+
+            <!-- PHISHING CLUES -->
+
+            <div class="clues">
+
+                <h3>
+                    🔍 Examine the Email
+                </h3>
+
+                <div class="clue-grid">
+
+                    <button onclick="checkClue('sender')">
+                        📧 Check Sender
+                    </button>
+
+                    <button onclick="checkClue('urgency')">
+                        ⏰ Check Urgency
+                    </button>
+
+                    <button onclick="checkClue('link')">
+                        🔗 Check Link
+                    </button>
+
+                    <button onclick="checkClue('language')">
+                        📝 Check Language
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DECISION -->
+
+            <div class="decision">
+
+                <h3>
+                    What would you do with this email?
+                </h3>
+
+                <div class="decision-buttons">
+
+                    <button
+                        class="danger"
+                        onclick="makeDecision('phishing')">
+
+                        🚨 Report as Phishing
+
+                    </button>
+
+
+                    <button
+                        class="safe"
+                        onclick="makeDecision('safe')">
+
+                        ✅ Trust the Email
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEEDBACK -->
+
+            <div
+                id="feedback"
+                class="feedback">
+
+                Analyze the email carefully before making a decision.
+
+            </div>
+
+        </div>
+
+
+        <!-- LEARNING PANEL -->
+
+        <aside class="learning-card">
+
+            <h2>
+                🧠 Phishing Awareness
+            </h2>
+
+            <div class="tip">
+
+                <span>01</span>
+
+                <p>
+                    Check the sender's email address carefully.
+                </p>
+
+            </div>
+
+
+            <div class="tip">
+
+                <span>02</span>
+
+                <p>
+                    Be cautious when a message creates unnecessary urgency.
+                </p>
+
+            </div>
+
+
+            <div class="tip">
+
+                <span>03</span>
+
+                <p>
+                    Avoid clicking unexpected links or attachments.
+                </p>
+
+            </div>
+
+
+            <div class="tip">
+
+                <span>04</span>
+
+                <p>
+                    Look for unusual grammar, spelling and formatting.
+                </p>
+
+            </div>
+
+
+            <div class="tip">
+
+                <span>05</span>
+
+                <p>
+                    When unsure, verify through an official channel.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    <section class="results">
+
+        <h2>
+            Security Knowledge
+        </h2>
+
+        <div class="result-grid">
+
+            <div>
+                <span>🔎</span>
+                <h3>Detect</h3>
+                <p>
+                    Identify suspicious email patterns.
+                </p>
+            </div>
+
+            <div>
+                <span>🛡️</span>
+                <h3>Protect</h3>
+                <p>
+                    Avoid unsafe links and attachments.
+                </p>
+            </div>
+
+            <div>
+                <span>📢</span>
+                <h3>Report</h3>
+                <p>
+                    Report suspicious messages to the appropriate team.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        THINK • VERIFY • REPORT
+    </p>
+
+    <small>
+        Cybersecurity Awareness Training Prototype
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
