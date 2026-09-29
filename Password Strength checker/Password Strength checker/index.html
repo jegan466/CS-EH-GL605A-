@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Analyzer | Cyber Security Tool</title>
+  <meta name="description" content="Analyze and enhance your password security with real-time client-side analysis, entropy calculation, and password generator.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Cyber Background Glows -->
+  <div class="cyber-glow-bg" aria-hidden="true">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand-badge">
+          <div class="shield-icon-wrapper">
+            <svg class="cyber-icon shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+            <span class="pulse-ring"></span>
+          </div>
+          <span class="brand-tag">SECURITY LABS</span>
+        </div>
+
+        <h1 class="main-title">Password Strength Analyzer</h1>
+        <p class="subtitle">Check and enhance the strength of your password.</p>
+
+        <!-- Privacy Assurance Badge -->
+        <div class="privacy-badge" title="Zero Network Requests Guarantee">
+          <svg class="privacy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Your password is analyzed locally and is never stored or transmitted.</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace Grid -->
+    <main class="main-layout">
+      <!-- Left Column: Core Analyzer -->
+      <section class="analyzer-column">
+        <!-- Card 1: Input and Action -->
+        <div class="cyber-card input-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <h2>Enter Password to Analyze</h2>
+            </div>
+            <button type="button" id="clearBtn" class="text-action-btn" title="Clear input field" aria-label="Clear password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+
+          <div class="input-wrapper">
+            <span class="input-prefix-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 2l-2 2m-1.5 1.5L16 7m-4 4l-4 4m0 0l-4-4m4 4l4 4"/>
+                <circle cx="7.5" cy="7.5" r="4.5"/>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="passwordInput" 
+              class="cyber-input" 
+              placeholder="Type or paste a password..." 
+              autocomplete="off" 
+              spellcheck="false"
+              aria-describedby="strengthText"
+            >
+            <button 
+              type="button" 
+              id="togglePasswordBtn" 
+              class="icon-action-btn" 
+              aria-label="Show password" 
+              title="Toggle visibility"
+            >
+              <!-- Eye open icon -->
+              <svg class="eye-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <!-- Eye off icon -->
+              <svg class="eye-off-icon is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                <line x1="2" x2="22" y1="2" y2="22"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Controls: Check Strength button & Quick Examples -->
+          <div class="input-footer">
+            <button type="button" id="checkStrengthBtn" class="cyber-btn primary-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              <span>Check Strength</span>
+            </button>
+
+            <div class="sample-pills-container">
+              <span class="sample-label">Try Examples:</span>
+              <div class="sample-pills">
+                <button type="button" class="sample-pill" data-sample="MyPassword@123">MyPassword@123</button>
+                <button type="button" class="sample-pill" data-sample="123456">123456</button>
+                <button type="button" class="sample-pill" data-sample="admin123">admin123</button>
+                <button type="button" class="sample-pill" data-sample="Tr0ub4dor&amp;3#2026">Tr0ub4dor&amp;3#2026</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Strength Indicator & Metrics -->
+        <div class="cyber-card strength-card" id="strengthCard">
+          <div class="strength-status-header">
+            <div class="status-left">
+              <span class="status-caption">Password Strength</span>
+              <div class="strength-title-row">
+                <span id="strengthText" class="strength-badge very-weak">Enter a Password</span>
+                <span id="strengthScore" class="strength-percentage">0%</span>
+              </div>
+            </div>
+            <div class="status-gauge-wrapper">
+              <!-- Circular Mini Gauge -->
+              <svg class="circular-chart" viewBox="0 0 36 36">
+                <path class="circle-bg"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path id="circleProgress" class="circle-fill"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <div class="gauge-center-icon">
+                <svg id="gaugeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Strength Meter: Continuous Fill + 5 Segments -->
+          <div class="meter-wrapper">
+            <div class="continuous-meter-track" title="Real-time strength fill">
+              <div id="meterProgressFill" class="continuous-meter-fill"></div>
+            </div>
+
+            <div class="segmented-meter" id="segmentedMeter">
+              <div class="meter-segment" data-segment="1"></div>
+              <div class="meter-segment" data-segment="2"></div>
+              <div class="meter-segment" data-segment="3"></div>
+              <div class="meter-segment" data-segment="4"></div>
+              <div class="meter-segment" data-segment="5"></div>
+            </div>
+            <div class="meter-labels">
+              <span>Very Weak</span>
+              <span>Weak</span>
+              <span>Medium</span>
+              <span>Strong</span>
+              <span>Very Strong</span>
+            </div>
+          </div>
+
+          <!-- Status Message Banner -->
+          <div id="statusMessageBanner" class="status-message-banner empty">
+            <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" x2="12" y1="8" y2="12"/>
+              <line x1="12" x2="12.01" y1="16" y2="16"/>
+            </svg>
+            <p id="statusMessageText">Begin typing to evaluate your password security in real time.</p>
+          </div>
+
+          <!-- Security Telemetry Metrics -->
+          <div class="telemetry-grid">
+            <div class="telemetry-item">
+              <span class="telemetry-label">Entropy</span>
+              <span id="entropyValue" class="telemetry-val">0.0 bits</span>
+              <span class="telemetry-sub">Information density</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Estimated Crack Time</span>
+              <span id="crackTimeValue" class="telemetry-val">Instant</span>
+              <span class="telemetry-sub">Modern GPU rig</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Length &amp; Character Sets</span>
+              <span id="charSetsValue" class="telemetry-val">0 chars • 0 sets</span>
+              <span class="telemetry-sub">Uppercase, digits, etc.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Requirements Checklist -->
+        <div class="cyber-card checklist-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 11 12 14 22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+              <h2>Password Requirements Checklist</h2>
+            </div>
+            <span id="checklistCounter" class="badge-counter">0 of 5 Met</span>
+          </div>
+
+          <ul class="checklist-items" id="requirementsList">
+            <li class="checklist-item" id="req-length">
+              <div class="status-marker">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="req-content">
+                <span class="req-title">At least 8 characters</span>
+                <span class="req-desc">Provides a fundamental defense against brute force attacks</span>
+              </div>
+            </li>
+
+            <li class="checklist-item" id="req-uppercase">
+              <div class="status-marker">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="req-content">
+                <span class="req-title">Contains uppercase letter (A&ndash;Z)</span>
+                <span class="req-desc">Expands the character space to 52 variations</span>
+              </div>
+            </li>
+
+            <li class="checklist-item" id="req-lowercase">
+              <div class="status-marker">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="req-content">
+                <span class="req-title">Contains lowercase letter (a&ndash;z)</span>
+                <span class="req-desc">Essential component of natural character distribution</span>
+              </div>
+            </li>
+
+            <li class="checklist-item" id="req-number">
+              <div class="status-marker">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="req-content">
+                <span class="req-title">Contains number (0&ndash;9)</span>
+                <span class="req-desc">Increases complexity and thwarts simple dictionary attacks</span>
+              </div>
+            </li>
+
+            <li class="checklist-item" id="req-special">
+              <div class="status-marker">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="req-content">
+                <span class="req-title">Contains special character (!, @, #, $, %, etc.)</span>
+                <span class="req-desc">Maximizes entropy and resists automated rainbow table lookup</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Improvement Suggestions & Pattern Warnings -->
+        <div class="cyber-card suggestions-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                <path d="M9 18h6"/>
+                <path d="M10 22h4"/>
+              </svg>
+              <h2>Security Suggestions &amp; Advisory</h2>
+            </div>
+          </div>
+
+          <div id="suggestionsContainer" class="suggestions-list">
+            <!-- Dynamic Suggestions will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Tools & Security Best Practices -->
+      <aside class="sidebar-column">
+        <!-- Tool 1: Strong Password Generator -->
+        <div class="cyber-card generator-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+              <h2>Generate Strong Password</h2>
+            </div>
+          </div>
+
+          <div class="generator-output-group">
+            <div class="generated-display" id="generatedPasswordDisplay">
+              Click Generate to create
+            </div>
+            <div class="generator-actions">
+              <button type="button" id="copyGeneratedBtn" class="cyber-btn sm-btn outline-btn" title="Copy to clipboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                <span id="copyBtnText">Copy</span>
+              </button>
+              <button type="button" id="useInAnalyzerBtn" class="cyber-btn sm-btn fill-btn" title="Analyze this generated password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+                <span>Use in Analyzer</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Controls for Password Generation -->
+          <div class="generator-controls">
+            <div class="control-row">
+              <div class="slider-header">
+                <label for="lengthSlider" class="control-label">Length:</label>
+                <span id="lengthDisplay" class="slider-val-badge">16</span>
+              </div>
+              <input type="range" id="lengthSlider" min="8" max="32" value="16" class="cyber-slider">
+            </div>
+
+            <div class="options-grid">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="genUppercase" checked>
+                <span class="checkmark"></span>
+                <span>Uppercase (A&ndash;Z)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="genLowercase" checked>
+                <span class="checkmark"></span>
+                <span>Lowercase (a&ndash;z)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="genNumbers" checked>
+                <span class="checkmark"></span>
+                <span>Numbers (0&ndash;9)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="genSymbols" checked>
+                <span class="checkmark"></span>
+                <span>Symbols (!@#$%)</span>
+              </label>
+              <label class="custom-checkbox full-width">
+                <input type="checkbox" id="genExcludeAmbiguous" checked>
+                <span class="checkmark"></span>
+                <span>Avoid Ambiguous Characters (l, 1, I, O, 0)</span>
+              </label>
+            </div>
+
+            <button type="button" id="generateBtn" class="cyber-btn primary-btn full-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+              </svg>
+              <span>Generate Strong Password</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 2: Security Best Practices Reference -->
+        <div class="cyber-card tips-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+              <h2>Cybersecurity Best Practices</h2>
+            </div>
+          </div>
+
+          <div class="tips-body">
+            <div class="tip-item">
+              <div class="tip-bullet"></div>
+              <div>
+                <strong>Length Over Complexity:</strong>
+                <p>Passphrases with 4+ random words (e.g. <code>correct-horse-battery-staple</code>) are harder to crack and easier to remember.</p>
+              </div>
+            </div>
+
+            <div class="tip-item">
+              <div class="tip-bullet"></div>
+              <div>
+                <strong>Never Reuse Passwords:</strong>
+                <p>A leak in one service compromises all accounts sharing identical credentials.</p>
+              </div>
+            </div>
+
+            <div class="tip-item">
+              <div class="tip-bullet"></div>
+              <div>
+                <strong>Use a Password Manager:</strong>
+                <p>Store cryptographically unique passwords securely without memorizing hundreds of codes.</p>
+              </div>
+            </div>
+
+            <div class="tip-item">
+              <div class="tip-bullet"></div>
+              <div>
+                <strong>Enable Multi-Factor (MFA / 2FA):</strong>
+                <p>Adds a critical second line of defense even if your password becomes compromised.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <p>Password Strength Analyzer &bull; Pure Client-Side Security Diagnostic</p>
+        <p class="footer-sub">Built with standard Web Cryptography API &bull; No cookies, no trackers, zero backend persistence</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
